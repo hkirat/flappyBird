@@ -54,17 +54,17 @@ score : 0
 var upper1 = {
 	xspeed : -30,
 	x : 20,
-	y : 0
+	y : -100
 }
 var upper2 = {
 	xspeed : -30,
 	x : 75,
-	y : 0
+	y : -50
 }
 var upper3 = {
 	xspeed : -30,
 	x : 130,
-	y : 0
+	y : -70
 }
 
 var keysDown = {};
@@ -82,8 +82,8 @@ addEventListener("keyup", function (e) {
 var reset = function () {
 	bird.xspeed=0;
 	bird.yspeed=0;
-	bird.x=2;
-	bird.y=2;
+	bird.x=0;
+	bird.y=100;
 	bird.score=0;
 };
 var f=0;
@@ -121,7 +121,14 @@ var update = function (modifier)
 	//collision detection
 	if (bird.y>256)
 		reset();
-	
+	if (upper1.x<15 && bird.y<upper1.y+135)
+		reset();
+
+	if (upper2.x<15 && bird.y<upper2.y+135)
+		reset();
+
+	if (upper3.x<15 && bird.y<upper3.y+135)
+		reset();
 };
 
 //function to render on the screen
