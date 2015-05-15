@@ -17,7 +17,30 @@ birdImage.onload = function()
 {
 	birdReady=true;
 }
-birdImage.src="images/bird.png"
+birdImage.src="images/bird.png";
+//first upper bar
+var upper1Ready=false;
+var upper1Image = new Image();
+upper1Image.onload = function() {
+	upper1Ready=true;
+}
+upper1Image.src="images/upper.png";
+
+//second upper bar
+var upper2Ready=false;
+var upper2Image = new Image();
+upper2Image.onload = function() {
+	upper2Ready=true;
+}
+upper2Image.src="images/upper.png";
+
+//third upper bar
+var upper3Ready=false;
+var upper3Image = new Image();
+upper3Image.onload = function() {
+	upper3Ready=true;
+}
+upper3Image.src="images/upper.png";
 
 var bird = {
 xspeed : 0,
@@ -28,6 +51,21 @@ x : 2,
 y : 2,
 score : 0
 };
+var upper1 = {
+	xspeed : -30,
+	x : 20,
+	y : 0
+}
+var upper2 = {
+	xspeed : -30,
+	x : 75,
+	y : 0
+}
+var upper3 = {
+	xspeed : -30,
+	x : 130,
+	y : 0
+}
 
 var keysDown = {};
 //adding key listeners
@@ -49,6 +87,7 @@ var reset = function () {
 	bird.score=0;
 };
 var f=0;
+var difficulty=-40;
 // function that is called a lot
 var update = function (modifier) 
 {
@@ -61,8 +100,28 @@ var update = function (modifier)
 	bird.y+=bird.yspeed * modifier;
 	bird.xspeed+=bird.xacc * modifier;
 	bird.yspeed+=bird.yacc * modifier;
+	upper1.x=upper1.x + upper1.xspeed * modifier;
+	upper2.x=upper2.x + upper2.xspeed * modifier;
+	upper3.x=upper3.x + upper3.xspeed * modifier;
+	if (upper1.x<-25)
+	{
+		upper1.y=difficulty-Math.random()*50;
+		upper1.x=144
+	}
+	if (upper2.x<-25)
+	{
+		upper2.x=144
+		upper2.y=difficulty-Math.random()*50;
+	}
+	if (upper3.x<-25)
+	{
+		upper3.x=144
+		upper3.y=difficulty-Math.random()*50;	
+	}	
+	//collision detection
 	if (bird.y>256)
 		reset();
+	
 };
 
 //function to render on the screen
@@ -73,6 +132,18 @@ var render = function () {
 	if (birdReady)
 	{
 		ctx.drawImage(birdImage,bird.x,bird.y);
+	}
+	if (upper1Ready)
+	{
+		ctx.drawImage(upper1Image,upper1.x,upper1.y);
+	}
+	if (upper2Ready)
+	{
+		ctx.drawImage(upper2Image,upper2.x,upper2.y);
+	}
+	if (upper3Ready)
+	{
+		ctx.drawImage(upper3Image,upper3.x,upper3.y);
 	}
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
