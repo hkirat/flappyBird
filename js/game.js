@@ -123,7 +123,7 @@ var reset = function () {
 	bird.xspeed=0;
 	bird.yspeed=0;
 	bird.x=0;
-	bird.y=100;
+	bird.y=120;
 	bird.score=0;
 };
 var f=0;
