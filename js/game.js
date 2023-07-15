@@ -135,9 +135,14 @@ addEventListener("keyup", function (e) {
 	delete keysDown[e.keyCode];
 	f=0;
 }, false);
+var highScore = 0;
+
 
 //function to reset game
 var reset = function () {
+	if (bird.score > highScore) {
+        highScore = bird.score;
+    }
 	difficulty=-40;
 	bird.xspeed=0;
 	bird.yspeed=0;
@@ -303,6 +308,7 @@ var render = function () {
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
 	ctx.fillText("Points: " +parseInt(bird.score), 12, 32);
+	ctx.fillText("High Score: " + parseInt(highScore), 12, 64);
 };
 
 // the main loop of the game
