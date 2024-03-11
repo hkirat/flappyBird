@@ -1,5 +1,6 @@
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
+var highScore = 0;
 canvas.width = 144;
 canvas.height = 256;
 document.body.appendChild(canvas);
@@ -241,10 +242,14 @@ var render = function () {
 	}
 	// Score
 	ctx.fillStyle = "rgb(250, 250, 250)";
-	ctx.font = "24px Helvetica";
+	ctx.font = "17px Helvetica";
 	ctx.textAlign = "left";
 	ctx.textBaseline = "top";
-	ctx.fillText("score: " +bird.score, 12, 32);
+	if(bird.score > highScore){
+		highScore = bird.score;
+	}
+	ctx.fillText("Record: " +highScore, 12, 15);
+	ctx.fillText("Score: " +bird.score, 12, 48);
 };
 
 // the main loop of the game
